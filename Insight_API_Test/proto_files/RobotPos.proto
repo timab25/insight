@@ -1,0 +1,8 @@
+package insight_msgs;
+
+message RobotPos
+{
+    required double pos_x = 1;
+    required double pos_y = 2;
+    required double pos_z = 3;
+}

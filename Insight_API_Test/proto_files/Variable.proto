@@ -1,0 +1,22 @@
+package insight_msgs;
+
+message Variable
+{
+    enum Variable_Type
+    {
+        INT32 = 1;
+        INT64 = 2;
+        FLOAT = 3;
+        DOUBLE = 4;
+        STRING = 5;
+    };
+
+    required string class = 1;
+    required Variable_Type variable_name = 2;
+
+    optional float float_value = 3;
+    optional double double_value = 4;
+    optional int32 int32_value = 5;
+    optional int64 int64_value = 6;
+    optional string string_value = 7;
+}

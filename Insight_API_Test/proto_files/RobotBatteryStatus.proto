@@ -1,0 +1,6 @@
+package insight_msgs;
+
+message RobotBatteryStatus
+{
+    required int32 battery_level = 1;
+}

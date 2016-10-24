@@ -1,0 +1,10 @@
+package insight_msgs;
+
+message RobotDetection
+{
+    required double bearing = 1;
+    required double range = 2;
+    optional int32 red = 3;
+    optional int32 green = 4;
+    optional int32 blue = 5;
+}

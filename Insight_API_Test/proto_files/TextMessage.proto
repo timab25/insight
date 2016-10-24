@@ -1,0 +1,11 @@
+ package insight_msgs;
+
+ message TextMessage
+ {
+     required string sending_module = 1;
+     required string severity_level = 2;
+     required string message = 3;
+
+     optional string file_name = 4;
+     optional int32 line_number = 5;
+ }
