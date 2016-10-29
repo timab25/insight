@@ -3,16 +3,77 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classinsight__client_1_1InsightClient_a6d11f608dae02e685a1d0dd1d8568406}{}def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)\label{classinsight__client_1_1InsightClient_a6d11f608dae02e685a1d0dd1d8568406}
-
-\item 
+def \hyperlink{classinsight__client_1_1InsightClient_a6ce2fb5655f85532583d4984f2c6f3da}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, ip, port)
+\begin{DoxyCompactList}\small\item\em initialize \hyperlink{classinsight__client_1_1InsightClient}{Insight\+Client} \end{DoxyCompactList}\item 
 def \hyperlink{classinsight__client_1_1InsightClient_a341da3412de138de10607a93656c4e49}{send\+Pos} (self, x, y, z)
 \begin{DoxyCompactList}\small\item\em send robot position to Insight G\+U\+I \end{DoxyCompactList}\item 
 def \hyperlink{classinsight__client_1_1InsightClient_a9b03273a011db2d6c88be123206fe975}{send\+Battery\+Status} (self, level)
 \begin{DoxyCompactList}\small\item\em send battery level of robot to Insight G\+U\+I \end{DoxyCompactList}\item 
-\hypertarget{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226df7a8b4}{}def {\bfseries send\+Detection}\label{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226df7a8b4}
+def \hyperlink{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226df7a8b4}{send\+Detection}
+\begin{DoxyCompactList}\small\item\em send sensor detection \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_aa4784fd79c440fc87674dc1e1c76bb35}{send\+Pose} (self, roll, pitch, yaw)
+\begin{DoxyCompactList}\small\item\em send pose of the robot \end{DoxyCompactList}\item 
+\hypertarget{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}{}def {\bfseries send\+Text\+Message}\label{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}{}def {\bfseries send\+Variable\+Double} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}{}def {\bfseries send\+Variable\+Float} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_a4daceeb2679929bebe4a4ef546bc7142}{}def {\bfseries send\+Variable\+Int\+Small} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a4daceeb2679929bebe4a4ef546bc7142}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_a311cdd084d94906a70cb90c0bd0ebc30}{}def {\bfseries send\+Variable\+Int\+Big} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a311cdd084d94906a70cb90c0bd0ebc30}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}{}def {\bfseries send\+Variable\+String} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}{}def {\bfseries close\+\_\+connection} (self)\label{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}
 
 \end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_ac5d0038b7be7f963967a300c84354158}{}{\bfseries sender\+\_\+socket}\label{classinsight__client_1_1InsightClient_ac5d0038b7be7f963967a300c84354158}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_af1a490005b64ca5deb3701678db9cc37}{}{\bfseries ip}\label{classinsight__client_1_1InsightClient_af1a490005b64ca5deb3701678db9cc37}
+
+\item 
+\hypertarget{classinsight__client_1_1InsightClient_ae432dbbcf1420593a59248936272af72}{}{\bfseries port}\label{classinsight__client_1_1InsightClient_ae432dbbcf1420593a59248936272af72}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classinsight__client_1_1InsightClient_a6ce2fb5655f85532583d4984f2c6f3da}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{ip, }
+\item[{}]{port}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a6ce2fb5655f85532583d4984f2c6f3da}
+
+
+initialize \hyperlink{classinsight__client_1_1InsightClient}{Insight\+Client} 
+
+initialize the \hyperlink{classinsight__client_1_1InsightClient}{Insight\+Client} and connection to the server
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & ip address of Insight\+Server \\
+\hline
+{\em port} & port of Insight\+Server\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no return value 
+\end{DoxyReturn}
 
 
 \subsection{Member Function Documentation}
@@ -33,6 +94,40 @@ This method is used to send the battery/fuel level of the robot to the Insight G
 
 \begin{DoxyParams}{Parameters}
 {\em level} & battery level\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226df7a8b4}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Detection@{send\+Detection}}
+\index{send\+Detection@{send\+Detection}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Detection}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Detection (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{bearing, }
+\item[{}]{distance, }
+\item[{}]{r = {\ttfamily 255}, }
+\item[{}]{g = {\ttfamily 255}, }
+\item[{}]{b = {\ttfamily 255}}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226df7a8b4}
+
+
+send sensor detection 
+
+This method is used to send a sensor detection from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em bearing} & relative bearing to detection \\
+\hline
+{\em distance} & distance to detection \\
+\hline
+{\em r} & red color value \\
+\hline
+{\em g} & green color value \\
+\hline
+{\em b} & blue color value\\
 \hline
 \end{DoxyParams}
 \begin{DoxyParagraph}{Return}
@@ -66,6 +161,34 @@ This method is used to send the 3\+D position of the robot to the Insight G\+U\+
 \begin{DoxyReturn}{Returns}
 no return value 
 \end{DoxyReturn}
+\hypertarget{classinsight__client_1_1InsightClient_aa4784fd79c440fc87674dc1e1c76bb35}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Pose@{send\+Pose}}
+\index{send\+Pose@{send\+Pose}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Pose}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Pose (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{roll, }
+\item[{}]{pitch, }
+\item[{}]{yaw}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_aa4784fd79c440fc87674dc1e1c76bb35}
+
+
+send pose of the robot 
+
+This method is used to send the pose of the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em roll} & roll of the robot \\
+\hline
+{\em pitch} & pitch of the robot \\
+\hline
+{\em yaw} & yaw of the robot\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
