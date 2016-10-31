@@ -12,11 +12,12 @@ message Variable
     };
 
     required string class_name = 1;
-    required Variable_Type variable_name = 2;
+    required string variable_name = 2;
+    required Variable_Type variable_type = 3;
 
-    optional float float_value = 3;
-    optional double double_value = 4;
-    optional int32 int32_value = 5;
-    optional int64 int64_value = 6;
-    optional string string_value = 7;
+    optional float float_value = 4;
+    optional double double_value = 5;
+    optional int32 int32_value = 6;
+    optional int64 int64_value = 7;
+    optional string string_value = 8;
 }

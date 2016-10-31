@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='Variable.proto',
   package='insight_msgs',
-  serialized_pb=_b('\n\x0eVariable.proto\x12\x0cinsight_msgs\"\x90\x02\n\x08Variable\x12\x12\n\nclass_name\x18\x01 \x02(\t\x12;\n\rvariable_name\x18\x02 \x02(\x0e\x32$.insight_msgs.Variable.Variable_Type\x12\x13\n\x0b\x66loat_value\x18\x03 \x01(\x02\x12\x14\n\x0c\x64ouble_value\x18\x04 \x01(\x01\x12\x13\n\x0bint32_value\x18\x05 \x01(\x05\x12\x13\n\x0bint64_value\x18\x06 \x01(\x03\x12\x14\n\x0cstring_value\x18\x07 \x01(\t\"H\n\rVariable_Type\x12\t\n\x05INT32\x10\x01\x12\t\n\x05INT64\x10\x02\x12\t\n\x05\x46LOAT\x10\x03\x12\n\n\x06\x44OUBLE\x10\x04\x12\n\n\x06STRING\x10\x05')
+  serialized_pb=_b('\n\x0eVariable.proto\x12\x0cinsight_msgs\"\xa7\x02\n\x08Variable\x12\x12\n\nclass_name\x18\x01 \x02(\t\x12\x15\n\rvariable_name\x18\x02 \x02(\t\x12;\n\rvariable_type\x18\x03 \x02(\x0e\x32$.insight_msgs.Variable.Variable_Type\x12\x13\n\x0b\x66loat_value\x18\x04 \x01(\x02\x12\x14\n\x0c\x64ouble_value\x18\x05 \x01(\x01\x12\x13\n\x0bint32_value\x18\x06 \x01(\x05\x12\x13\n\x0bint64_value\x18\x07 \x01(\x03\x12\x14\n\x0cstring_value\x18\x08 \x01(\t\"H\n\rVariable_Type\x12\t\n\x05INT32\x10\x01\x12\t\n\x05INT64\x10\x02\x12\t\n\x05\x46LOAT\x10\x03\x12\n\n\x06\x44OUBLE\x10\x04\x12\n\n\x06STRING\x10\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -53,8 +53,8 @@ _VARIABLE_VARIABLE_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=233,
-  serialized_end=305,
+  serialized_start=256,
+  serialized_end=328,
 )
 _sym_db.RegisterEnumDescriptor(_VARIABLE_VARIABLE_TYPE)
 
@@ -75,42 +75,49 @@ _VARIABLE = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='variable_name', full_name='insight_msgs.Variable.variable_name', index=1,
-      number=2, type=14, cpp_type=8, label=2,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='variable_type', full_name='insight_msgs.Variable.variable_type', index=2,
+      number=3, type=14, cpp_type=8, label=2,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='float_value', full_name='insight_msgs.Variable.float_value', index=2,
-      number=3, type=2, cpp_type=6, label=1,
+      name='float_value', full_name='insight_msgs.Variable.float_value', index=3,
+      number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='double_value', full_name='insight_msgs.Variable.double_value', index=3,
-      number=4, type=1, cpp_type=5, label=1,
+      name='double_value', full_name='insight_msgs.Variable.double_value', index=4,
+      number=5, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='int32_value', full_name='insight_msgs.Variable.int32_value', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      name='int32_value', full_name='insight_msgs.Variable.int32_value', index=5,
+      number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='int64_value', full_name='insight_msgs.Variable.int64_value', index=5,
-      number=6, type=3, cpp_type=2, label=1,
+      name='int64_value', full_name='insight_msgs.Variable.int64_value', index=6,
+      number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='string_value', full_name='insight_msgs.Variable.string_value', index=6,
-      number=7, type=9, cpp_type=9, label=1,
+      name='string_value', full_name='insight_msgs.Variable.string_value', index=7,
+      number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -128,10 +135,10 @@ _VARIABLE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=33,
-  serialized_end=305,
+  serialized_end=328,
 )
 
-_VARIABLE.fields_by_name['variable_name'].enum_type = _VARIABLE_VARIABLE_TYPE
+_VARIABLE.fields_by_name['variable_type'].enum_type = _VARIABLE_VARIABLE_TYPE
 _VARIABLE_VARIABLE_TYPE.containing_type = _VARIABLE
 DESCRIPTOR.message_types_by_name['Variable'] = _VARIABLE
 

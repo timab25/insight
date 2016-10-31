@@ -13,27 +13,20 @@ def \hyperlink{classinsight__client_1_1InsightClient_a1687ed68fdf32c05c179a5226d
 \begin{DoxyCompactList}\small\item\em send sensor detection \end{DoxyCompactList}\item 
 def \hyperlink{classinsight__client_1_1InsightClient_aa4784fd79c440fc87674dc1e1c76bb35}{send\+Pose} (self, roll, pitch, yaw)
 \begin{DoxyCompactList}\small\item\em send pose of the robot \end{DoxyCompactList}\item 
-\hypertarget{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}{}def {\bfseries send\+Text\+Message}\label{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}{}def {\bfseries send\+Variable\+Double} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}{}def {\bfseries send\+Variable\+Float} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_a4daceeb2679929bebe4a4ef546bc7142}{}def {\bfseries send\+Variable\+Int\+Small} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a4daceeb2679929bebe4a4ef546bc7142}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_a311cdd084d94906a70cb90c0bd0ebc30}{}def {\bfseries send\+Variable\+Int\+Big} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a311cdd084d94906a70cb90c0bd0ebc30}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}{}def {\bfseries send\+Variable\+String} (self, class\+\_\+name, name, value)\label{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}
-
-\item 
-\hypertarget{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}{}def {\bfseries close\+\_\+connection} (self)\label{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}
-
-\end{DoxyCompactItemize}
+def \hyperlink{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}{send\+Text\+Message}
+\begin{DoxyCompactList}\small\item\em send text message from the robot \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}{send\+Variable\+Double} (self, class\+\_\+name, name, value)
+\begin{DoxyCompactList}\small\item\em send a double variable \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}{send\+Variable\+Float} (self, class\+\_\+name, name, value)
+\begin{DoxyCompactList}\small\item\em send a float variable \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_a4d5a78a75c245963abc551de0f00b90a}{send\+Variable\+Int32} (self, class\+\_\+name, name, value)
+\begin{DoxyCompactList}\small\item\em send a int32 variable \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_aedd06b5e19c04374d41637c84fbb2930}{send\+Variable\+Int64} (self, class\+\_\+name, name, value)
+\begin{DoxyCompactList}\small\item\em send a int64 variable \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}{send\+Variable\+String} (self, class\+\_\+name, name, value)
+\begin{DoxyCompactList}\small\item\em send a string variable \end{DoxyCompactList}\item 
+def \hyperlink{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}{close\+\_\+connection} (self)
+\begin{DoxyCompactList}\small\item\em close the socket connection \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -77,6 +70,22 @@ no return value
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!close\+\_\+connection@{close\+\_\+connection}}
+\index{close\+\_\+connection@{close\+\_\+connection}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{close\+\_\+connection}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+close\+\_\+connection (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a7938f9621d43eb201f6df1ef377e5544}
+
+
+close the socket connection 
+
+This method is used to shutdown the socket connection
+
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
 \hypertarget{classinsight__client_1_1InsightClient_a9b03273a011db2d6c88be123206fe975}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Battery\+Status@{send\+Battery\+Status}}
 \index{send\+Battery\+Status@{send\+Battery\+Status}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
 \subsubsection[{send\+Battery\+Status}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Battery\+Status (
@@ -184,6 +193,180 @@ This method is used to send the pose of the robot to the Insight G\+U\+I
 {\em pitch} & pitch of the robot \\
 \hline
 {\em yaw} & yaw of the robot\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Text\+Message@{send\+Text\+Message}}
+\index{send\+Text\+Message@{send\+Text\+Message}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Text\+Message}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Text\+Message (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{sender, }
+\item[{}]{severity, }
+\item[{}]{message, }
+\item[{}]{file\+\_\+name = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{line\+\_\+number = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a190f2cba379bef06c42094278ed13107}
+
+
+send text message from the robot 
+
+This method is used to send a text message from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & name of the sending module \\
+\hline
+{\em severity} & D\+E\+B\+U\+G, I\+N\+F\+O, E\+R\+R\+O\+R, W\+A\+R\+N\+I\+N\+G \\
+\hline
+{\em message} & message body \\
+\hline
+{\em file\+\_\+name} & filename the message is being sent from \\
+\hline
+{\em line\+\_\+number} & line number the message is being sent from\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Variable\+Double@{send\+Variable\+Double}}
+\index{send\+Variable\+Double@{send\+Variable\+Double}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Variable\+Double}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Variable\+Double (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{class\+\_\+name, }
+\item[{}]{name, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_aa6b84982b43cc0b035c1a67b427b7703}
+
+
+send a double variable 
+
+This method is used to send a double variable from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+\_\+name} & name of class containing the variable \\
+\hline
+{\em name} & name of the variable \\
+\hline
+{\em value} & value of the variable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Variable\+Float@{send\+Variable\+Float}}
+\index{send\+Variable\+Float@{send\+Variable\+Float}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Variable\+Float}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Variable\+Float (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{class\+\_\+name, }
+\item[{}]{name, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a97456977d92fa0d582f67f1bfa8fa6f2}
+
+
+send a float variable 
+
+This method is used to send a float variable from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+\_\+name} & name of class containing the variable \\
+\hline
+{\em name} & name of the variable \\
+\hline
+{\em value} & value of the variable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_a4d5a78a75c245963abc551de0f00b90a}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Variable\+Int32@{send\+Variable\+Int32}}
+\index{send\+Variable\+Int32@{send\+Variable\+Int32}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Variable\+Int32}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Variable\+Int32 (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{class\+\_\+name, }
+\item[{}]{name, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a4d5a78a75c245963abc551de0f00b90a}
+
+
+send a int32 variable 
+
+This method is used to send a int32 variable from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+\_\+name} & name of class containing the variable \\
+\hline
+{\em name} & name of the variable \\
+\hline
+{\em value} & value of the variable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_aedd06b5e19c04374d41637c84fbb2930}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Variable\+Int64@{send\+Variable\+Int64}}
+\index{send\+Variable\+Int64@{send\+Variable\+Int64}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Variable\+Int64}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Variable\+Int64 (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{class\+\_\+name, }
+\item[{}]{name, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_aedd06b5e19c04374d41637c84fbb2930}
+
+
+send a int64 variable 
+
+This method is used to send a int64 variable from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+\_\+name} & name of class containing the variable \\
+\hline
+{\em name} & name of the variable \\
+\hline
+{\em value} & value of the variable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Return}
+no return value 
+\end{DoxyParagraph}
+\hypertarget{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}{}\index{insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}!send\+Variable\+String@{send\+Variable\+String}}
+\index{send\+Variable\+String@{send\+Variable\+String}!insight\+\_\+client\+::\+Insight\+Client@{insight\+\_\+client\+::\+Insight\+Client}}
+\subsubsection[{send\+Variable\+String}]{\setlength{\rightskip}{0pt plus 5cm}def insight\+\_\+client.\+Insight\+Client.\+send\+Variable\+String (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{class\+\_\+name, }
+\item[{}]{name, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\label{classinsight__client_1_1InsightClient_a6016938cd631acf9b4d28e37f2037608}
+
+
+send a string variable 
+
+This method is used to send a string variable from the robot to the Insight G\+U\+I
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+\_\+name} & name of class containing the variable \\
+\hline
+{\em name} & name of the variable \\
+\hline
+{\em value} & value of the variable\\
 \hline
 \end{DoxyParams}
 \begin{DoxyParagraph}{Return}

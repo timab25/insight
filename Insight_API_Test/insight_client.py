@@ -4,8 +4,10 @@ import RobotDetection_pb2
 import RobotPose_pb2
 import TextMessage_pb2
 import Variable_pb2
+import InsightMsg_pb2
 import socket
 import sys
+import struct
 
 
 class InsightClient:
@@ -28,6 +30,7 @@ class InsightClient:
             self.sender_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.ip = ip
             self.port = port
+            self.sender_socket.connect((ip, port))
         except socket.error:
             print('Failed to create socket')
             sys.exit()
@@ -51,7 +54,20 @@ class InsightClient:
         pos_to_send.pos_x = x
         pos_to_send.pos_y = y
         pos_to_send.pos_z = z
-        self.sender_socket.sendto(pos_to_send.SerializeToString(), (self.ip, self.port))
+
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.POS
+        insight_msg_to_send.position.CopyFrom(pos_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
 
 
     def sendBatteryStatus(self, level):
@@ -69,6 +85,20 @@ class InsightClient:
         print("Sending battery status: " + str(level))
         battery_status = RobotBatteryStatus_pb2.RobotBatteryStatus()
         battery_status.battery_level = level
+
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.BATTERY
+        insight_msg_to_send.battery_status.CopyFrom(battery_status)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
 
     def sendDetection(self, bearing, distance, r=255, g=255, b=255):
         """
@@ -94,6 +124,20 @@ class InsightClient:
         detection.green = g
         detection.blue = b
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.DETECTION
+        insight_msg_to_send.detection.CopyFrom(detection)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def sendPose(self, roll, pitch, yaw):
         """
         send pose of the robot
@@ -114,9 +158,38 @@ class InsightClient:
         pose_report.pitch = pitch
         pose_report.yaw = yaw
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.POSE
+        insight_msg_to_send.pose.CopyFrom(pose_report)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def sendTextMessage(self, sender, severity, message, file_name="", line_number=0):
+        """
+        send text message from the robot
+
+        This method is used to send a text message from the robot to the Insight GUI
+
+        Args:
+            sender: name of the sending module
+            severity: DEBUG, INFO, ERROR, WARNING
+            message: message body
+            file_name: filename the message is being sent from
+            line_number: line number the message is being sent from
+
+        Return:
+            no return value
+        """
         print("Sending text message: " + sender + ":" + severity + ":" + message)
-        print(file_name + ":" + line_number)
+        print(file_name + ":" + str(line_number))
 
         message_to_send = TextMessage_pb2.TextMessage()
         message_to_send.sending_module = sender
@@ -125,54 +198,240 @@ class InsightClient:
         message_to_send.file_name = file_name
         message_to_send.line_number = line_number
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.TEXT
+        insight_msg_to_send.txt_msg.CopyFrom(message_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def sendVariableDouble(self, class_name, name, value):
+        """
+        send a double variable
+
+        This method is used to send a double variable from the robot to the Insight GUI
+
+        Args:
+            class_name: name of class containing the variable
+            name: name of the variable
+            value: value of the variable
+
+        Return:
+            no return value
+        """
         print("Sending double variable: " + class_name + ":" + name + ":" + str(value))
         variable_to_send = Variable_pb2.Variable()
         variable_to_send.class_name = class_name
-        variable_to_send.name = name
-        variable_to_send.variable_name = Variable_pb2.Variable.DOUBLE
+        variable_to_send.variable_type = Variable_pb2.Variable.DOUBLE
+        variable_to_send.variable_name = name
         variable_to_send.double_value = value
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.VARIABLE
+        insight_msg_to_send.var_msg.CopyFrom(variable_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def sendVariableFloat(self, class_name, name, value):
-        print("Sending double variable: " + class_name + ":" + name + ":" + str(value))
+        """
+        send a float variable
+
+        This method is used to send a float variable from the robot to the Insight GUI
+
+        Args:
+            class_name: name of class containing the variable
+            name: name of the variable
+            value: value of the variable
+
+        Return:
+            no return value
+        """
+        print("Sending float variable: " + class_name + ":" + name + ":" + str(value))
         variable_to_send = Variable_pb2.Variable()
         variable_to_send.class_name = class_name
-        variable_to_send.name = name
-        variable_to_send.variable_name = Variable_pb2.Variable.FLOAT
+        variable_to_send.variable_type = Variable_pb2.Variable.FLOAT
+        variable_to_send.variable_name = name
         variable_to_send.float_value = value
 
-    def sendVariableIntSmall(self, class_name, name, value):
-        print("Sending double variable: " + class_name + ":" + name + ":" + str(value))
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.VARIABLE
+        insight_msg_to_send.var_msg.CopyFrom(variable_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
+    def sendVariableInt32(self, class_name, name, value):
+        """
+        send a int32 variable
+
+        This method is used to send a int32 variable from the robot to the Insight GUI
+
+        Args:
+            class_name: name of class containing the variable
+            name: name of the variable
+            value: value of the variable
+
+        Return:
+            no return value
+        """
+        print("Sending int32 variable: " + class_name + ":" + name + ":" + str(value))
         variable_to_send = Variable_pb2.Variable()
         variable_to_send.class_name = class_name
-        variable_to_send.name = name
-        variable_to_send.variable_name = Variable_pb2.Variable.INT32
+        variable_to_send.variable_name = name
+        variable_to_send.variable_type = Variable_pb2.Variable.INT32
         variable_to_send.int32_value = value
 
-    def sendVariableIntBig(self, class_name, name, value):
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.VARIABLE
+        insight_msg_to_send.var_msg.CopyFrom(variable_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
+    def sendVariableInt64(self, class_name, name, value):
+        """
+        send a int64 variable
+
+        This method is used to send a int64 variable from the robot to the Insight GUI
+
+        Args:
+            class_name: name of class containing the variable
+            name: name of the variable
+            value: value of the variable
+
+        Return:
+            no return value
+        """
         print("Sending double variable: " + class_name + ":" + name + ":" + str(value))
         variable_to_send = Variable_pb2.Variable()
         variable_to_send.class_name = class_name
-        variable_to_send.name = name
-        variable_to_send.variable_name = Variable_pb2.Variable.INT64
+        variable_to_send.variable_name = name
+        variable_to_send.variable_type = Variable_pb2.Variable.INT64
         variable_to_send.int64_value = value
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.VARIABLE
+        insight_msg_to_send.var_msg.CopyFrom(variable_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def sendVariableString(self, class_name, name, value):
+        """
+        send a string variable
+
+        This method is used to send a string variable from the robot to the Insight GUI
+
+        Args:
+            class_name: name of class containing the variable
+            name: name of the variable
+            value: value of the variable
+
+        Return:
+            no return value
+        """
         print("Sending double variable: " + class_name + ":" + name + ":" + value)
         variable_to_send = Variable_pb2.Variable()
         variable_to_send.class_name = class_name
-        variable_to_send.name = name
-        variable_to_send.variable_name = Variable_pb2.Variable.STRING
+        variable_to_send.variable_name = name
+        variable_to_send.variable_type = Variable_pb2.Variable.STRING
         variable_to_send.string_value = value
 
+        insight_msg_to_send = InsightMsg_pb2.InsightMsg()
+        insight_msg_to_send.robot_name = "Test"
+        insight_msg_to_send.msg_type = InsightMsg_pb2.InsightMsg.VARIABLE
+        insight_msg_to_send.var_msg.CopyFrom(variable_to_send)
+
+        s = insight_msg_to_send.SerializeToString()
+
+        totallen = 4 + len(s)
+        print("Sending: " + str(totallen))
+        pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+
+        self.sender_socket.sendall(pack1)
+        self.sender_socket.sendall(s)
+
     def close_connection(self):
+        """
+        close the socket connection
+
+        This method is used to shutdown the socket connection
+
+        Return:
+            no return value
+        """
         self.sender_socket.close()
 
 
 def main():
     insight_client = InsightClient('127.0.0.1', 8899)
+
     insight_client.sendPos(1, 1, 1)
-    raw_input('Press Enter')
+    raw_input('Press Enter to send next')
+
+    insight_client.sendBatteryStatus(95)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendDetection(150, 65, 0, 125, 230)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendPose(45, 25, 270)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendTextMessage("test_prog", "DEBUG", "this is a test", "test.cpp", 60)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendVariableDouble("test_class", "double_var", 12.34)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendVariableFloat("test_class", "float_var", 54.56)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendVariableInt32("test_class", "int32_var", 123456)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendVariableInt64("test_class", "int64_var", 987654321)
+    raw_input('Press Enter to send next')
+
+    insight_client.sendVariableString("test_class", "string_var", "test_string")
+    raw_input('Press Enter to send next')
+
 
 if __name__ == "__main__":
     main()

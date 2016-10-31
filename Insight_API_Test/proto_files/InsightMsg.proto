@@ -1,0 +1,33 @@
+package insight_msgs;
+
+import "RobotBatteryStatus.proto";
+import "RobotDetection.proto";
+import "RobotPos.proto";
+import "RobotPose.proto";
+import "TextMessage.proto";
+import "Variable.proto";
+
+message InsightMsg
+{
+    enum Message_Type
+    {
+        BATTERY = 1;
+        DETECTION = 2;
+        POS = 3;
+        POSE = 4;
+        TEXT = 5;
+        VARIABLE = 6;
+    };
+
+    required string robot_name = 1;
+    required Message_Type msg_type = 2;
+
+    oneof body{
+        RobotBatteryStatus battery_status = 101;
+        RobotDetection detection = 102;
+        RobotPos position = 103;
+        RobotPose pose = 104;
+        TextMessage txt_msg = 105;
+        Variable var_msg = 106;
+    }
+}

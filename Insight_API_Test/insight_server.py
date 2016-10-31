@@ -1,6 +1,8 @@
 from threading import Thread
 import socket
 import sys
+import InsightMsg_pb2
+import struct
 
 
 class InsightServer:
@@ -38,8 +40,34 @@ class InsightServer:
     def run(self):
         while self.isRunning:
             print("recv message")
-            d = self.recv_socket.recvfrom(1024)
+
+            totallen = self.recv_socket.recv(4)
+            totallenRecv = struct.unpack('>I', totallen)[0]
+            print("got size " + str(totallenRecv))
+            messagelen = totallenRecv - 4
+            message = self.recv_socket.recv(messagelen)
+
             print("rcvd a message")
+
+            rcvd_message = InsightMsg_pb2.InsightMsg()
+            rcvd_message.ParseFromString(message)
+            print(rcvd_message.robot_name)
+
+            if rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.BATTERY:
+                print("rcvd Battery message")
+            elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.POS:
+                print("rcvd Position message")
+            elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.POSE:
+                print("rcvd Pose message")
+            elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.DETECTION:
+                print("rcvd Detection message")
+            elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.TEXT:
+                print("rcvd Text message")
+            elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.VARIABLE:
+                print("rcvd Variable message")
+            else:
+                print("rcvd Unknown message")
+
         self.recv_socket.close()
 
     def shutdown(self):
