@@ -55,18 +55,25 @@ class InsightServer:
 
             if rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.BATTERY:
                 print("rcvd Battery message")
+                print(rcvd_message)
             elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.POS:
                 print("rcvd Position message")
+                print(rcvd_message)
             elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.POSE:
                 print("rcvd Pose message")
+                print(rcvd_message)
             elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.DETECTION:
                 print("rcvd Detection message")
+                print(rcvd_message)
             elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.TEXT:
                 print("rcvd Text message")
+                print(rcvd_message)
             elif rcvd_message.msg_type == InsightMsg_pb2.InsightMsg.VARIABLE:
                 print("rcvd Variable message")
+                print(rcvd_message)
             else:
                 print("rcvd Unknown message")
+                print(rcvd_message)
 
         self.recv_socket.close()
 

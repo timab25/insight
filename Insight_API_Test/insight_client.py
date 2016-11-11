@@ -65,6 +65,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -96,6 +97,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -134,6 +136,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -168,6 +171,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -208,6 +212,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -243,6 +248,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -278,6 +284,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -313,6 +320,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -348,6 +356,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -383,6 +392,7 @@ class InsightClient:
         totallen = 4 + len(s)
         print("Sending: " + str(totallen))
         pack1 = struct.pack('>I', totallen)  # the first part of the message is length
+        print(insight_msg_to_send)
 
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
@@ -403,34 +413,34 @@ def main():
     insight_client = InsightClient('127.0.0.1', 8899)
 
     insight_client.sendPos(1, 1, 1)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendBatteryStatus(95)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendDetection(150, 65, 0, 125, 230)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendPose(45, 25, 270)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendTextMessage("test_prog", "DEBUG", "this is a test", "test.cpp", 60)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendVariableDouble("test_class", "double_var", 12.34)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendVariableFloat("test_class", "float_var", 54.56)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendVariableInt32("test_class", "int32_var", 123456)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendVariableInt64("test_class", "int64_var", 987654321)
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
     insight_client.sendVariableString("test_class", "string_var", "test_string")
-    raw_input('Press Enter to send next')
+    raw_input('Press Enter to send next\n')
 
 
 if __name__ == "__main__":
