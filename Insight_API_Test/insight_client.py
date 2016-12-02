@@ -103,7 +103,7 @@ class InsightClient:
         self.sender_socket.sendall(pack1)
         self.sender_socket.sendall(s)
 
-    def sendDetection(self, bearing, distance, r=255, g=255, b=255):
+    def sendDetection(self, bearing, distance, robot_x, robot_y, r=255, g=255, b=255):
         """
         send sensor detection
 
@@ -112,6 +112,8 @@ class InsightClient:
         Args:
             bearing: relative bearing to detection
             distance: distance to detection
+            robot_x: x position of robot
+            robot_y: y position of robot
             r: red color value
             g: green color value
             b: blue color value
@@ -126,6 +128,8 @@ class InsightClient:
         detection.red = r
         detection.green = g
         detection.blue = b
+        detection.robot_x = robot_x
+        detection.robot_y = robot_y
 
         insight_msg_to_send = InsightMsg_pb2.InsightMsg()
         insight_msg_to_send.robot_name = "Test"
@@ -413,11 +417,32 @@ class InsightClient:
 def main():
     insight_client = InsightClient('127.0.0.1', 8899)
 
-    insight_client.sendPos(1, 1, 0)
     raw_input('Press Enter to send next\n')
+
+    time.sleep(3)
+    #insight_client.sendBatteryStatus(100)
+    insight_client.sendPos(0, 0, 0)
+    time.sleep(1)
+    insight_client.sendPos(0, 0, 1)
+    time.sleep(1)
+    insight_client.sendPos(0, 0, 2)
+    time.sleep(1)
+    insight_client.sendPos(0, 0, 3)
+    time.sleep(1)
+    insight_client.sendPos(0, 0, 4)
+    time.sleep(1)
+
+    insight_client.sendDetection(5, 5, 0, 0, 1, 1, 1)
+    insight_client.sendDetection(10, 5, 0, 0, 1, 1, 1)
+    insight_client.sendDetection(15, 5, 0, 0, 1, 1, 1)
+    insight_client.sendDetection(20, 5, 0, 0, 1, 1, 1)
+    insight_client.sendDetection(25, 5, 0, 0, 1, 1, 1)
+    insight_client.sendDetection(30, 5, 0, 0, 1, 1, 1)
 
     for x in range(0, 360, 10):
         insight_client.sendVariableFloat("test_class", "test_var", math.sin(math.radians(x)))
+        time.sleep(1)
+        insight_client.sendPos((x/100.0)*-1, 0, 4+(x/100.0))
         time.sleep(1)
 
     # insight_client.sendBatteryStatus(95)

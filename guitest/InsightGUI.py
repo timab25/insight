@@ -9,6 +9,7 @@ import InsightMsg_pb2
 import struct
 import DataManager
 from VariableGraphWidget import *
+import MainControlWidget
 
 class InsightGUI(QMainWindow):
 
@@ -35,8 +36,10 @@ class InsightGUI(QMainWindow):
         self.world_view_dock_widget = QDockWidget("World View", self)
         self.world_view_dock_widget.setWidget(self.world_view)
         self.addDockWidget(Qt.DockWidgetArea(1), self.world_view_dock_widget)
-
         self.setWindowTitle("Insight GUI")
+
+        self.maincontrol = MainControlWidget.MainControlWidget()
+        self.maincontrol.show()
 
         QObject.connect(self.world_view, SIGNAL('render'), self.render_graph)
 
@@ -47,23 +50,27 @@ class InsightGUI(QMainWindow):
         if e.key() == Qt.Key_Escape:
             self.close()
         elif e.key() == Qt.Key_Up:
-            print('Up')
             self.world_view.moveUp(1)
         elif e.key() == Qt.Key_Down:
-            print('Down')
             self.world_view.moveDown(1)
         elif e.key() == Qt.Key_W:
-            print('W')
             self.world_view.moveForward(1)
         elif e.key() == Qt.Key_A:
-            print('A')
             self.world_view.moveLeft(1)
         elif e.key() == Qt.Key_S:
-            print('S')
             self.world_view.moveBack(1)
         elif e.key() == Qt.Key_D:
-            print('D')
             self.world_view.moveRight(1)
+        elif e.key() == Qt.Key_Left:
+            self.world_view.rotateLeft()
+        elif e.key() == Qt.Key_Right:
+            self.world_view.rotateRight()
+        elif e.key() == Qt.Key_R:
+            self.world_view.resetRotation()
+        elif e.key() == Qt.Key_Q:
+            self.world_view.rotateUp()
+        elif e.key() == Qt.Key_E:
+            self.world_view.rotateDown()
 
 
     def start_server(self):
@@ -88,22 +95,19 @@ class InsightGUI(QMainWindow):
         self.recv_thread.start()
 
     def process_message(self, message):
-        #print("Processing message")
         if message.msg_type == InsightMsg_pb2.InsightMsg.BATTERY:
-            print("rcvd Battery message")
             self.data_manager.updateBatteryLevel(message.battery_status.battery_level)
+            #self.maincontrol.updateBatterStatus(message.battery_status.battery_level)
         elif message.msg_type == InsightMsg_pb2.InsightMsg.POS:
-            print("rcvd Position message")
             self.data_manager.updatePosition(message.position.pos_x, message.position.pos_y, message.position.pos_z)
             self.world_view.updatePosition(message.position.pos_x, message.position.pos_y, message.position.pos_z)
+            self.maincontrol.updateVar1("robot x", message.position.pos_x)
+            self.maincontrol.updateVar2("robot z", message.position.pos_z)
         elif message.msg_type == InsightMsg_pb2.InsightMsg.POSE:
-            print("rcvd Pose message")
             self.data_manager.updatePose(message.pose.roll, message.pose.pitch, message.pose.yaw)
             self.world_view.updatePose(message.pose.roll, message.pose.pitch, message.pose.yaw)
         elif message.msg_type == InsightMsg_pb2.InsightMsg.DETECTION:
-            print("rcvd Detection message")
-            self.world_view.addDetection(message.detection.bearing, message.detection.range, message.detection.red,
-                                         message.detection.green, message.detection.blue)
+            self.world_view.addDetection(message.detection)
         elif message.msg_type == InsightMsg_pb2.InsightMsg.TEXT:
             print("rcvd Text message")
         elif message.msg_type == InsightMsg_pb2.InsightMsg.VARIABLE:
@@ -115,24 +119,15 @@ class InsightGUI(QMainWindow):
         else:
             print("rcvd Unknown message")
 
-    def onVarClicked(self, key_value):
-        print('hello')
-
     def run(self):
         while self.isRunning:
-            #print("recv message")
-
             totallen = self.recv_socket.recv(4)
             totallenRecv = struct.unpack('>I', totallen)[0]
-            #print("got size " + str(totallenRecv))
             messagelen = totallenRecv - 4
             message = self.recv_socket.recv(messagelen)
 
-            #print("rcvd a message")
-
             rcvd_message = InsightMsg_pb2.InsightMsg()
             rcvd_message.ParseFromString(message)
-            #print(rcvd_message)
             self.process_message(rcvd_message)
 
         self.recv_socket.close()
@@ -143,6 +138,7 @@ class InsightGUI(QMainWindow):
         self.recv_thread.join()
 
         print("Exiting")
+
 
 def main():
     app = QApplication(sys.argv)

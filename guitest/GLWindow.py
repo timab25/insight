@@ -3,7 +3,8 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtCore import *
-import numpy as np
+import RobotDetection_pb2
+import math
 
 class GLWindow(QGLWidget):
 
@@ -15,25 +16,32 @@ class GLWindow(QGLWidget):
         self.y = 0
         self.z = -10
 
-        self.robot_x = 0
-        self.robot_y = 0
-        self.robot_z = 0
+        self.robot_x = 0.0
+        self.robot_y = 0.0
+        self.robot_z = 0.0
 
-        self.robot_roll = 0
-        self.robot_pitch = 0
-        self.robot_yaw = 0
+        self.robot_roll = 0.0
+        self.robot_pitch = 0.0
+        self.robot_yaw = 0.0
 
-        self.detections = np.empty()
+        self.rotation_y = 0;
+        self.rotation_x = 0;
+
+        self.past_positions = []
+        self.detections = []
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glLoadIdentity()
-        print('here')
+
+        glRotated(self.rotation_y, 0, 1, 0)
+        glRotated(self.rotation_x, 1, 0, 0)
         glTranslated(self.x, self.y, self.z)
 
         glColor4f(0.0, 1.0, 1.0, 1.0)
+        glLineWidth(1.0)
         glBegin(GL_LINES)
-        for i in range(-25,25):
+        for i in range(-25, 25):
             glVertex3f(i, 0.0, -25)
             glVertex3f(i, 0.0, 25)
             glVertex3f(-25, 0.0, i)
@@ -41,9 +49,31 @@ class GLWindow(QGLWidget):
         glEnd()
 
         glPushMatrix()
-        glTranslated(self.robot_x, self.robot_y, self.robot_z)
-        glutSolidCube(1)
+        glRotated(self.robot_roll, 0, 0, 1)
+        glRotated(self.robot_pitch, 1, 0, 0)
+        glRotated(self.robot_yaw, 0, 1, 0)
+        glTranslated(self.robot_x, self.robot_y, -self.robot_z)
+        glutSolidCube(0.25)
         glPopMatrix()
+
+        glPointSize(5.0)
+        glBegin(GL_POINTS)
+        for i in range(len(self.detections)):
+            currPoint = self.detections[i]
+            print currPoint
+            glColor3f(currPoint.red, currPoint.green, currPoint.blue)
+            point_x = currPoint.robot_x + currPoint.range*math.sin(currPoint.bearing*0.0174533)
+            point_y = currPoint.robot_y + currPoint.range*math.cos(currPoint.bearing*0.0174533)
+            glVertex3f(point_x, 0, -point_y)
+        glEnd()
+
+        glColor4f(1.0, 1.0, 1.0, 1.0)
+        glBegin(GL_LINE_STRIP)
+        for i in range(len(self.past_positions)):
+            pos = self.past_positions[i]
+            print(pos)
+            glVertex3f(pos[0], pos[1], -pos[2])
+        glEnd()
 
         glFlush()
 
@@ -110,6 +140,7 @@ class GLWindow(QGLWidget):
         self.robot_x = x
         self.robot_y = y
         self.robot_z = z
+        self.past_positions.append([x, y, z])
         self.update()
 
     def updatePose(self, roll, pitch, yaw):
@@ -122,10 +153,46 @@ class GLWindow(QGLWidget):
         self.detections = []
         self.update()
 
-    def addDetection(self, bearing, range_m, r, g, b):
-        self.detections.append([bearing, range_m, r, g, b])
+    def addDetection(self, detect):
+        self.detections.append(detect)
         self.update()
 
+    def rotateLeft(self):
+        self.rotation_y -= 1
+        if self.rotation_y < 0:
+            self.rotation_y = 360
+        elif self.rotation_y > 360:
+            self.rotation_y = 0
+        self.update()
+
+    def rotateRight(self):
+        self.rotation_y += 1
+        if self.rotation_y < 0:
+            self.rotation_y = 360
+        elif self.rotation_y > 360:
+            self.rotation_y = 0
+        self.update()
+
+    def resetRotation(self):
+        self.rotation_y = 0
+        self.rotation_x = 0
+        self.update()
+
+    def rotateUp(self):
+        self.rotation_x += 1
+        if self.rotation_x < 0:
+            self.rotation_x = 360
+        elif self.rotation_x > 360:
+            self.rotation_x = 0
+        self.update()
+
+    def rotateDown(self):
+        self.rotation_x -= 1
+        if self.rotation_x < 0:
+            self.rotation_x = 360
+        elif self.rotation_x > 360:
+            self.rotation_x = 0
+        self.update()
 
 
 

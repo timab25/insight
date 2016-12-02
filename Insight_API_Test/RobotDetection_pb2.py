@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='RobotDetection.proto',
   package='insight_msgs',
-  serialized_pb=_b('\n\x14RobotDetection.proto\x12\x0cinsight_msgs\"Z\n\x0eRobotDetection\x12\x0f\n\x07\x62\x65\x61ring\x18\x01 \x02(\x01\x12\r\n\x05range\x18\x02 \x02(\x01\x12\x0b\n\x03red\x18\x03 \x01(\x05\x12\r\n\x05green\x18\x04 \x01(\x05\x12\x0c\n\x04\x62lue\x18\x05 \x01(\x05')
+  serialized_pb=_b('\n\x14RobotDetection.proto\x12\x0cinsight_msgs\"|\n\x0eRobotDetection\x12\x0f\n\x07\x62\x65\x61ring\x18\x01 \x02(\x01\x12\r\n\x05range\x18\x02 \x02(\x01\x12\x0f\n\x07robot_x\x18\x03 \x02(\x01\x12\x0f\n\x07robot_y\x18\x04 \x02(\x01\x12\x0b\n\x03red\x18\x05 \x01(\x05\x12\r\n\x05green\x18\x06 \x01(\x05\x12\x0c\n\x04\x62lue\x18\x07 \x01(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -47,22 +47,36 @@ _ROBOTDETECTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='red', full_name='insight_msgs.RobotDetection.red', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      name='robot_x', full_name='insight_msgs.RobotDetection.robot_x', index=2,
+      number=3, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='green', full_name='insight_msgs.RobotDetection.green', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      name='robot_y', full_name='insight_msgs.RobotDetection.robot_y', index=3,
+      number=4, type=1, cpp_type=5, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='blue', full_name='insight_msgs.RobotDetection.blue', index=4,
+      name='red', full_name='insight_msgs.RobotDetection.red', index=4,
       number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='green', full_name='insight_msgs.RobotDetection.green', index=5,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='blue', full_name='insight_msgs.RobotDetection.blue', index=6,
+      number=7, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -79,7 +93,7 @@ _ROBOTDETECTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=38,
-  serialized_end=128,
+  serialized_end=162,
 )
 
 DESCRIPTOR.message_types_by_name['RobotDetection'] = _ROBOTDETECTION

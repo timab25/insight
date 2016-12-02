@@ -4,7 +4,9 @@ message RobotDetection
 {
     required double bearing = 1;
     required double range = 2;
-    optional int32 red = 3;
-    optional int32 green = 4;
-    optional int32 blue = 5;
+    required double robot_x = 3;
+    required double robot_y = 4;
+    optional int32 red = 5;
+    optional int32 green = 6;
+    optional int32 blue = 7;
 }
