@@ -441,7 +441,9 @@ def main():
 
     for x in range(0, 360, 10):
         insight_client.sendVariableFloat("test_class", "test_var", math.sin(math.radians(x)))
-        time.sleep(1)
+        time.sleep(0.001)
+        insight_client.sendVariableFloat("test_class", "test_var2", math.cos(math.radians(x)))
+        time.sleep(0.001)
         insight_client.sendPos((x/100.0)*-1, 0, 4+(x/100.0))
         time.sleep(1)
 

@@ -12,9 +12,6 @@ class VariableGraphWidget(QDockWidget):
         pg.setConfigOptions(antialias=True)
         self.win = pg.PlotWidget()  # Automatically generates grids with multiple items
         self.win.getPlotItem().enableAutoScale()
-        #x = np.random.normal(size=1000)
-        #y = np.random.normal(size=1000)
-        #self.win.plot(x, y)
         self.setWidget(self.win)
         self.graph_data = {}
 

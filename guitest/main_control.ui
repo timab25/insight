@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>178</width>
-    <height>166</height>
+    <width>285</width>
+    <height>417</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -39,56 +45,159 @@
     <number>24</number>
    </property>
   </widget>
-  <widget class="QLabel" name="var_label_1">
+  <widget class="QCheckBox" name="checkBox1">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>60</y>
-     <width>101</width>
-     <height>16</height>
+     <y>119</y>
+     <width>251</width>
+     <height>18</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Not Set</string>
    </property>
   </widget>
-  <widget class="QLabel" name="var_label_2">
+  <widget class="QCheckBox" name="checkBox2">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
-     <width>81</width>
-     <height>16</height>
+     <y>139</y>
+     <width>261</width>
+     <height>18</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Not Set</string>
    </property>
   </widget>
-  <widget class="QLabel" name="text_1">
+  <widget class="QCheckBox" name="checkBox3">
    <property name="geometry">
     <rect>
      <x>10</x>
+     <y>159</y>
+     <width>251</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Not Set</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>179</y>
+     <width>261</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Not Set</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>199</y>
+     <width>261</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Not Set</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>219</y>
+     <width>261</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Not Set</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="shutdownButton">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>260</y>
+     <width>110</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Shutdown</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>221</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Data Inspector</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
      <y>80</y>
-     <width>151</width>
-     <height>17</height>
+     <width>181</width>
+     <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string/>
+    <string>Click to Display</string>
    </property>
   </widget>
-  <widget class="QLabel" name="text_2">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>151</width>
-     <height>17</height>
+     <x>5</x>
+     <y>302</y>
+     <width>271</width>
+     <height>91</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Cambria</family>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string/>
+    <string>INSIGHT GUI</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

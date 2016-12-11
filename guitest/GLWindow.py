@@ -4,6 +4,7 @@ from OpenGL.GLUT import *
 from PyQt4.QtOpenGL import *
 from PyQt4.QtCore import *
 import RobotDetection_pb2
+from model_loader import *
 import math
 
 class GLWindow(QGLWidget):
@@ -53,14 +54,13 @@ class GLWindow(QGLWidget):
         glRotated(self.robot_pitch, 1, 0, 0)
         glRotated(self.robot_yaw, 0, 1, 0)
         glTranslated(self.robot_x, self.robot_y, -self.robot_z)
-        glutSolidCube(0.25)
+        glutSolidCube(0.5)
         glPopMatrix()
 
-        glPointSize(5.0)
+        glPointSize(8.0)
         glBegin(GL_POINTS)
         for i in range(len(self.detections)):
             currPoint = self.detections[i]
-            print currPoint
             glColor3f(currPoint.red, currPoint.green, currPoint.blue)
             point_x = currPoint.robot_x + currPoint.range*math.sin(currPoint.bearing*0.0174533)
             point_y = currPoint.robot_y + currPoint.range*math.cos(currPoint.bearing*0.0174533)
@@ -71,7 +71,6 @@ class GLWindow(QGLWidget):
         glBegin(GL_LINE_STRIP)
         for i in range(len(self.past_positions)):
             pos = self.past_positions[i]
-            print(pos)
             glVertex3f(pos[0], pos[1], -pos[2])
         glEnd()
 

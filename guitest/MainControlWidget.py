@@ -14,11 +14,3 @@ class MainControlWidget(QDialog):
     def updateBatterStatus(self, level):
         self.ui.batteryPB.setValue(level)
 
-    def updateVar1(self, title, value):
-        self.ui.var_label_1.setText(title)
-        self.ui.text_1.setText(str(value))
-
-    def updateVar2(self, title, value):
-        self.ui.var_label_2.setText(title)
-        self.ui.text_2.setText(str(value))
-
